@@ -1,10 +1,13 @@
+#For Loop
 TF = 1
 
+#Factorial recursive function
 def Factorial(fact, k):
     if k == 0:
         return fact
     return Factorial(fact * k, k - 1)
 
+#main function
 while TF:
     numbers = int(input("Enter number: "))
 
