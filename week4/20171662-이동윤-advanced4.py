@@ -8,7 +8,9 @@ def Factorial(fact, k):
 while TF:
     n = int(input("Enter number n: "))
     r = int(input("Enter number r: "))
-
+    if r>n:
+        r,n = n,r
+        print("change n->r, r->n")
     if n >= 0 and r >= 0:
         print("nCr : ", int(Factorial(1,n)/(Factorial(1,r)*Factorial(1,n-r))))
     else:
