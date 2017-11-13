@@ -4,6 +4,7 @@ from PyQt5.QtWidgets import QLineEdit, QToolButton
 from PyQt5.QtWidgets import QSizePolicy
 from PyQt5.QtWidgets import QLayout, QGridLayout, QMessageBox
 from keypad import *
+from calcFunctions import *
 
 class Button(QToolButton):
 
@@ -80,7 +81,9 @@ class Calculator(QWidget):
         if self.display.text() == 'Error!':
             self.display.setText('')
 
+        n = self.display.text()
         consList = {'pi' : '3.141592', '빛의 이동 속도 (m/s)' : '3E+8', '소리의 이동 속도 (m/s)' : '340', '태양과의 평균 거리 (km)' : '1.5E+8'}
+        funcList = {'factorial (!)' : factorial(n), '-> binary' : decToBin(n), 'binary -> dec' : binToDec(n), '-> roman' : decToRoman(n)}
 
         if key == '=':
             try:
@@ -96,25 +99,13 @@ class Calculator(QWidget):
         elif key == 'C':
             self.display.setText('')
 
+        # Constants
         elif key in consList.keys():
             self.display.setText(self.display.text() + consList[key])
 
-
-        elif key == functionList[0]:
-            n = self.display.text()
-            value = calcFunctions.factorial(n)
-            self.display.setText(str(value))
-        elif key == functionList[1]:
-            n = self.display.text()
-            value = calcFunctions.decToBin(n)
-            self.display.setText(str(value))
-        elif key == functionList[2]:
-            n = self.display.text()
-            value = calcFunctions.binToDec(n)
-            self.display.setText(str(value))
-        elif key == functionList[3]:
-            n = self.display.text()
-            value = calcFunctions.decToRoman(n)
+        # Functions
+        elif key in funcList.keys():
+            value = funcList[key]
             self.display.setText(str(value))
 
         else:
@@ -132,3 +123,4 @@ if __name__ == '__main__':
     calc = Calculator()
     calc.show()
     sys.exit(app.exec_())
+
