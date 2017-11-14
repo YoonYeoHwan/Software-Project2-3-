@@ -2,9 +2,9 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QApplication, QWidget
 from PyQt5.QtWidgets import QLineEdit, QToolButton
 from PyQt5.QtWidgets import QSizePolicy
-from PyQt5.QtWidgets import QLayout, QGridLayout
+from PyQt5.QtWidgets import QLayout, QGridLayout, QMessageBox
 
-from keypad2 import numPadList, operatorList, constantList, functionList
+from keypad import numPadList, operatorList, constantList, functionList
 import calcFunctions
 
 class Button(QToolButton):
@@ -82,8 +82,12 @@ class Calculator(QWidget):
         if key == '=':
             try:
                 result = str(eval(self.display.text()))
+
             except:
-                result = 'Error!'
+                ErrorMessage = QMessageBox.information(self, 'Error',
+                                                       'Input is not correct.')
+                result = ''
+
             self.display.setText(result)
         elif key == 'C':
             self.display.clear()
@@ -98,6 +102,8 @@ class Calculator(QWidget):
 
         else:
             self.display.setText(self.display.text() + key)
+
+
 
 
 if __name__ == '__main__':
