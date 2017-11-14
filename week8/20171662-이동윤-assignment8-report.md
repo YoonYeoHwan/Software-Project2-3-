@@ -7,14 +7,14 @@ keypad 모듈과 calcFunctions 모듈을 연결해준다.
 
 ```
     def set(numStr, num):
-    text = numStr
-    funcNumList = [
-        factorial(text),
-        decToBin(text),
-        binToDec(text),
-        decToRoman(text)
-    ]
-    return funcNumList[num]
+        text = numStr
+        funcNumList = [
+            factorial(text),
+            decToBin(text),
+            binToDec(text),
+            decToRoman(text)
+        ]
+        return funcNumList[num]
 ```
 
 calcFunctions 모듈의 메소드를 사용해 funcNumLIst를 초기화하고 필요한 값을 리턴한다.
